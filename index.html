@@ -17,8 +17,13 @@
             const button = document.getElementById('certificateButton');
             
             if (certId) {
-                // Update button href to point to backend endpoint
-                button.href = `https://internalapp-nptel-ac-in-noc.vercel.app/certificate?cert_id=${certId}`;
+                button.onclick = async function(e) {
+                    e.preventDefault();
+                    const response = await fetch(`https://internalapp-nptel-ac-in-noc.vercel.app/certificate?cert_id=${certId}`);
+                    const blob = await response.blob();
+                    const url = URL.createObjectURL(blob);
+                    window.open(url, '_blank');
+                };
             }
         }
     </script>
