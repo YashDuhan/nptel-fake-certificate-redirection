@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Course Certificate</title>
+    <script>
+        // Function to get URL parameters
+        function getUrlParameter(name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            var results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        }
+
+        // Update button href when page loads
+        window.onload = function() {
+            const certId = getUrlParameter('cert_id');
+            const button = document.getElementById('certificateButton');
+            
+            if (certId) {
+                // Update button href to point to backend endpoint
+                button.href = `https://internalapp-nptel-ac-in-noc.vercel.app/certificate?cert_id=${certId}`;
+            }
+        }
+    </script>
+</head>
+<body>
+    <center style="position: absolute;top: 40%;left: 50%;transform: translate(-50%, -50%);">
+        <a id="certificateButton" 
+           href="#" 
+           style="color:white; background-color:#3070bf;padding:10px 20px;border-radius:8px;text-decoration:none;display: inline-block;width: 156px;">
+            Course Certificate
+        </a>
+    </center>
+</body>
+</html>
